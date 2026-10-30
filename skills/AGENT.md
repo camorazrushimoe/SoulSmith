@@ -28,13 +28,16 @@ Every manifest must include:
 - `description`
 - `domain`
 - `tags`
-- `tools.required`
+- `required_tools` (list, may be empty)
+- `optional_tools` (list, may be empty)
 - `input_schema`
 - `output_schema`
 - `version`
 - `author`
 
-Optional: `tools.optional`, `compatibility`.
+Also include `compatibility` (list).
+
+The Markdown body must include an `## Anti-patterns` section.
 
 See [README.md](README.md) for field definitions.
 
@@ -42,7 +45,7 @@ See [README.md](README.md) for field definitions.
 
 - `id`: kebab-case, lowercase, stable once published. Pattern: `<object>-<action>` or `<platform>-<object>-<action>` (e.g. `test-gap-analysis`, `github-pr-diff-review`).
 - File name equals the `id`: `skills/<domain>/<id>.md`.
-- `domain`: one of `dev`, `qa`, `research`, `ops`, `delivery`. Propose new domains in an issue first.
+- `domain`: one of `dev`, `qa`, `research`, `product`, `ops`. Propose new domains in an issue first.
 - `tags`: lowercase, kebab-case, 3 to 8 tags.
 - `version`: semantic versioning, start at `0.1.0`.
 
@@ -62,9 +65,8 @@ description: >
   docs-only or config-only changes.
 domain: qa
 tags: [testing, coverage, pull-request, review]
-tools:
-  required: [github.get_pull_request_files]
-  optional: [github.get_file_contents]
+required_tools: [github.get_pull_request_files]
+optional_tools: [github.get_file_contents]
 input_schema:
   pr_url: string
 output_schema:
@@ -84,6 +86,9 @@ author: your-handle
 
 ## Edge cases
 ...
+
+## Anti-patterns
+- ...
 ```
 
 The frontmatter is for matching. The body is the instructions the assembled agent follows.
@@ -93,5 +98,6 @@ The frontmatter is for matching. The body is the instructions the assembled agen
 - [ ] `id` is unique in the registry
 - [ ] All required fields are present
 - [ ] Description says when *not* to use the skill
+- [ ] Body has an `## Anti-patterns` section
 - [ ] Required tools actually exist in the named connectors
 - [ ] Skill is added to the index in `skills/README.md`
