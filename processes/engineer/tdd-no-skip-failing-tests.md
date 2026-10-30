@@ -9,11 +9,14 @@ steps:
   - Run it again to confirm it is green
   - Do not skip or comment out failing tests
   - If a test is wrong, fix the test explicitly in a commit whose message says so
+  - Stop and request review from an external reviewer; do not self-approve or merge
 escalation:
   - Contact the tech lead if a test requirement conflicts with the spec
 stop_conditions:
   - There are no clear acceptance criteria to write a test against; ask for spec clarification before coding
+  - No external review verdict received
 anti_patterns:
+  - Self-approving own PR or work
   - Skipping tests with pytest.mark.skip or an equivalent
   - Deleting failing tests
   - Writing tests after the code so they match the implementation
@@ -28,3 +31,5 @@ author: camorazrushimoe
 A failing test is information, not an obstacle. The agent either makes it pass with real code or changes it openly, with a commit that explains why the test was wrong.
 
 Hiding a red test (skip, xfail, delete, comment out) is treated as a contract violation, even if the rest of the suite is green.
+
+**Review is never self-approval.** A green suite is the agent's own evidence, not a review. Changes to tests especially need an outside reviewer; the agent stops and asks "where is the review?" before going further.
