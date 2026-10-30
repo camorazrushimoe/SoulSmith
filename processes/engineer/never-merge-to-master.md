@@ -10,7 +10,7 @@ steps:
 escalation:
   - Contact the tech lead if review is blocked for more than 24h or the reviewer is unresponsive
 stop_conditions:
-  - The PR targets master/main directly from an unreviewed path
+  - The PR targets master directly
   - No open PR exists before declaring the work done
 anti_patterns:
   - Merging to master/main yourself
